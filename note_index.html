@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+        <title>Vue 3 Basics</title>
+        <link href="note.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="app" data-v-app="">
+            <div>
+                <hr>
+                <h2> Note down your daily activity</h2>
+                <input @keyup.enter="greet(greeting)" v-model="greeting" />
+                <form>  
+                    <label> Select label </label>  
+                    <select v-model="priority">  
+                        <option value = "High"> High </option>  
+                        <option value = "Medium"> Medium </option>  
+                        <option value = "Low"> Low  </option>   
+                    </select>  
+                </form>  
+                <button v-on:click="submitArray(greeting)">POST</button>
+                <hr><h2>{{greeting}}</h2>
+                <hr />
+                <button v-on:click="view_notes">View Notes</button>
+                <div id="list"></div>
+                <button v-on:click="toggleBox">TOGGLE BOX</button>
+                <div v-if="isVisible" class="box"></div>
+            </div>
+        </div>
+
+        <script src="https://unpkg.com/vue@next"></script>
+        <script>
+            let app = Vue.createApp({
+                data: function() {
+                    return {
+                        greeting: 'add note',
+                        isVisible: false,
+                        notes: new Array(30),
+                        priority: "Medium"
+                    }
+                },
+                methods: {
+                    greet(greeting) {
+                        console.log(greeting)
+                    },
+                    toggleBox(){
+                        this.isVisible =! this.isVisible
+                        console.log(this.isVisible)
+                    },
+                    submitArray(greeting){
+                        const d = new Date()
+                        this.notes.push([greeting,d,this.priority])
+                        console.log(this.notes)
+                    },
+                    view_notes(){
+                        var add=document.getElementById('main')
+                        this.notes.forEach(element => {
+                            var userRows = document.createElement('div')
+                            
+                        });
+                        var userRows = document.createElement('div');
+            userRows.setAttribute("class", "box");
+            let userRow=`<div class="avatar"><a class="rate" href=${obj.repo_url}>
+            <img class="icon" src=${obj.icon} ></a>
+        </div>
+        <div class="desc">
+            <div class="title">
+                <div class="tag-container">
+                    <div class="name" width="70%"><a href=${obj.url}>${obj.repo_name}</a></div>
+                    <div class="ima"><div class="dot"></div><span>${obj.lang}</span></div> 
+                    <div class="ima"><svg class="pc" height="14" width="14" color="#6e6e6e" viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"></path></svg><span>${obj.stars}</span></div> 
+                    <div class="ima" style="padding-right:20px;"><svg class="pc" height="18" width="18" viewBox="0 0 18 18" color="#6e6e6e" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M8 1a1.993 1.993 0 0 0-1 3.72V6L5 8 3 6V4.72A1.993 1.993 0 0 0 2 1a1.993 1.993 0 0 0-1 3.72V6.5l3 3v1.78A1.993 1.993 0 0 0 5 15a1.993 1.993 0 0 0 1-3.72V9.5l3-3V4.72A1.993 1.993 0 0 0 8 1zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3 10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3-10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg><span>${obj.forks}</span></div>  
+                  </div>
+                
+            </div>
+            <div class="description" style="font-family: Monaco, monospace; font-size:15px">
+                ⚡ ${obj.desc}
+            </div>
+            <div class="author"><span><a id="selected" href=${obj.repo_url}>${JSON.parse(m)}</a></span>
+                  &nbsp${obj.lic} • ${"updated "+moment(obj.updated_time, "YYYY-MM-DD").fromNow()+""}
+            </div>
+        </div>`
+            userRows.innerHTML = userRow
+            mn.appendChild(userRows)
+                    }
+                }
+            })
+            app.mount('#app')
+        </script>
+    </body>
+</html>
